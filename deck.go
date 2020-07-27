@@ -13,19 +13,37 @@ import (
 //which is slice of strings
 
 type deck []string
+type csuits struct {
+	gameSuit  []string
+	gameValue []string
+}
 
 //Creates the deck
 func newDeck() deck {
-	cards := deck{}
-	cardSuits := []string{"Spades", "Hearts", "Clubs", "Diamonds"}
-	cardValues := []string{"King", "Queen", "Jack", "Ace", "Two", "Three", "Four"}
 
-	for suit := range cardSuits {
+	workkingDeck := deck{}
+
+	cards := csuits{
+		gameSuit:  []string{"Spades", "Hearts", "Clubs", "Diamonds"},
+		gameValue: []string{"Ace", "Two", "Three", "Four"},
+	}
+
+	for suit := range cards.gameSuit {
+		for value := range cards.gameValue {
+			workkingDeck = append(workkingDeck, cards.gameValue[value]+" of "+cards.gameSuit[suit])
+		}
+	}
+	/*cards := deck{}
+	cardSuits := []string{"Spades", "Hearts", "Clubs", "Diamonds"}
+	cardValues := []string{"Ace", "Two", "Three", "Four"}*/
+
+	/*for suit := range cardSuits {
 		for value := range cardValues {
 			cards = append(cards, cardValues[value]+" of "+cardSuits[suit])
 		}
-	}
-	return cards
+	}*/
+
+	return workkingDeck
 }
 
 //Prints out the Deck
